@@ -139,7 +139,7 @@ public class MainActivity2 extends AppCompatActivity {
         compositePageTransformer.addTransformer(new MarginPageTransformer(40));
         compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
             @Override
-            public void transformPage(@NonNull View page, float position) {
+             public void transformPage(@NonNull View page, float position) {
                 float r=1-Math.abs(position);
                 page.setScaleY(0.85f+r*0.15f);
             }
