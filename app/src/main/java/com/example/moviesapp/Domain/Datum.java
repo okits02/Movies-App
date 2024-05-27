@@ -1,4 +1,3 @@
-
 package com.example.moviesapp.Domain;
 
 import java.util.List;
@@ -10,27 +9,27 @@ public class Datum {
     @SerializedName("id")
     @Expose
     private Integer id;
+    @SerializedName("genre_ids")
+    @Expose
+    private List<Integer> genreIds;
+    @SerializedName("original_title")
+    @Expose
+    private String originalTitle;
+    @SerializedName("poster_path")
+    @Expose
+    private String posterPath;
+    @SerializedName("release_date")
+    @Expose
+    private String releaseDate;
     @SerializedName("title")
     @Expose
     private String title;
-    @SerializedName("poster")
+    @SerializedName("vote_average")
     @Expose
-    private String poster;
-    @SerializedName("year")
+    private Double voteAverage;
+    @SerializedName("vote_count")
     @Expose
-    private String year;
-    @SerializedName("country")
-    @Expose
-    private String country;
-    @SerializedName("imdb_rating")
-    @Expose
-    private String imdbRating;
-    @SerializedName("genres")
-    @Expose
-    private List<String> genres;
-    @SerializedName("images")
-    @Expose
-    private List<String> images;
+    private Integer voteCount;
 
     public Integer getId() {
         return id;
@@ -38,6 +37,40 @@ public class Datum {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public List<Integer> getGenreIds() {
+        return genreIds;
+    }
+
+    public void setGenreIds(List<Integer> genreIds) {
+        this.genreIds = genreIds;
+    }
+
+    public String getOriginalTitle() {
+        return originalTitle;
+    }
+
+    public void setOriginalTitle(String originalTitle) {
+        this.originalTitle = originalTitle;
+    }
+
+
+
+    public String getPosterPath() {
+        return posterPath;
+    }
+
+    public void setPosterPath(String posterPath) {
+        this.posterPath = posterPath;
+    }
+
+    public String getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
     }
 
     public String getTitle() {
@@ -48,52 +81,20 @@ public class Datum {
         this.title = title;
     }
 
-    public String getPoster() {
-        return poster;
+    public Double getVoteAverage() {
+        return voteAverage;
     }
 
-    public void setPoster(String poster) {
-        this.poster = poster;
+    public void setVoteAverage(Double voteAverage) {
+        this.voteAverage = voteAverage;
     }
 
-    public String getYear() {
-        return year;
+    public Integer getVoteCount() {
+        return voteCount;
     }
 
-    public void setYear(String year) {
-        this.year = year;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getImdbRating() {
-        return imdbRating;
-    }
-
-    public void setImdbRating(String imdbRating) {
-        this.imdbRating = imdbRating;
-    }
-
-    public List<String> getGenres() {
-        return genres;
-    }
-
-    public void setGenres(List<String> genres) {
-        this.genres = genres;
-    }
-
-    public List<String> getImages() {
-        return images;
-    }
-
-    public void setImages(List<String> images) {
-        this.images = images;
+    public void setVoteCount(Integer voteCount) {
+        this.voteCount = voteCount;
     }
 
 }
