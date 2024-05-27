@@ -9,11 +9,13 @@ import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.android.volley.Request;
@@ -44,6 +46,7 @@ public class MainActivity2 extends AppCompatActivity {
     private StringRequest mstringRequest, mstringRequest1, mstringRequest2;
     private ProgressBar loading, loading1, loading2;
     private ViewPager2 viewPager2;
+    private ImageView imgExplorer, imgFavorite, imgCart, imgProfile;
     private Handler sliderHandler=new Handler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +57,7 @@ public class MainActivity2 extends AppCompatActivity {
         sendRequestBestMovies();
         sendRequestCategoryMovies();
         sendRequestUpcommingMovies();
+        BoottomAppBarActivity();
     }
 
     private void sendRequestBestMovies()
@@ -164,6 +168,17 @@ public class MainActivity2 extends AppCompatActivity {
         }
     };
 
+    private void BoottomAppBarActivity()
+    {
+        imgProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity2.this, ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -189,5 +204,9 @@ public class MainActivity2 extends AppCompatActivity {
         loading1=findViewById(R.id.progressBar2);
         loading2=findViewById(R.id.progressBar3);
         loading2=findViewById(R.id.progressBar3);
+        imgExplorer=findViewById(R.id.imageViewExplorer);
+        imgFavorite=findViewById(R.id.imageViewFavorite);
+        imgCart=findViewById(R.id.imageViewCart);
+        imgProfile=findViewById(R.id.imageViewProfile);
     }
 }

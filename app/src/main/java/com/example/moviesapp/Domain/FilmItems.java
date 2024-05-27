@@ -1,72 +1,49 @@
-
 package com.example.moviesapp.Domain;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
 public class FilmItems {
 
     @SerializedName("id")
     @Expose
     private Integer id;
+    @SerializedName("backdrop_path")
+    @Expose
+    private String backdropPath;
+    @SerializedName("genre_ids")
+    @Expose
+    private List<Integer> genreIds;
+    @SerializedName("original_language")
+    @Expose
+    private String originalLanguage;
+    @SerializedName("original_title")
+    @Expose
+    private String originalTitle;
+    @SerializedName("overview")
+    @Expose
+    private String overview;
+    @SerializedName("popularity")
+    @Expose
+    private Double popularity;
+    @SerializedName("poster_path")
+    @Expose
+    private String posterPath;
+    @SerializedName("release_date")
+    @Expose
+    private String releaseDate;
     @SerializedName("title")
     @Expose
     private String title;
-    @SerializedName("poster")
+    @SerializedName("vote_average")
     @Expose
-    private String poster;
-    @SerializedName("year")
+    private Double voteAverage;
+    @SerializedName("vote_count")
     @Expose
-    private String year;
-    @SerializedName("rated")
+    private Integer voteCount;
+    @SerializedName("video_link")
     @Expose
-    private String rated;
-    @SerializedName("released")
-    @Expose
-    private String released;
-    @SerializedName("runtime")
-    @Expose
-    private String runtime;
-    @SerializedName("director")
-    @Expose
-    private String director;
-    @SerializedName("writer")
-    @Expose
-    private String writer;
-    @SerializedName("actors")
-    @Expose
-    private String actors;
-    @SerializedName("plot")
-    @Expose
-    private String plot;
-    @SerializedName("country")
-    @Expose
-    private String country;
-    @SerializedName("awards")
-    @Expose
-    private String awards;
-    @SerializedName("metascore")
-    @Expose
-    private String metascore;
-    @SerializedName("imdb_rating")
-    @Expose
-    private String imdbRating;
-    @SerializedName("imdb_votes")
-    @Expose
-    private String imdbVotes;
-    @SerializedName("imdb_id")
-    @Expose
-    private String imdbId;
-    @SerializedName("type")
-    @Expose
-    private String type;
-    @SerializedName("genres")
-    @Expose
-    private List<String> genres;
-    @SerializedName("images")
-    @Expose
-    private List<String> images;
+    private String videoLink;
 
     public Integer getId() {
         return id;
@@ -74,6 +51,70 @@ public class FilmItems {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getBackdropPath() {
+        return backdropPath;
+    }
+
+    public void setBackdropPath(String backdropPath) {
+        this.backdropPath = backdropPath;
+    }
+
+    public List<Integer> getGenreIds() {
+        return genreIds;
+    }
+
+    public void setGenreIds(List<Integer> genreIds) {
+        this.genreIds = genreIds;
+    }
+
+    public String getOriginalLanguage() {
+        return originalLanguage;
+    }
+
+    public void setOriginalLanguage(String originalLanguage) {
+        this.originalLanguage = originalLanguage;
+    }
+
+    public String getOriginalTitle() {
+        return originalTitle;
+    }
+
+    public void setOriginalTitle(String originalTitle) {
+        this.originalTitle = originalTitle;
+    }
+
+    public String getOverview() {
+        return overview;
+    }
+
+    public void setOverview(String overview) {
+        this.overview = overview;
+    }
+
+    public Double getPopularity() {
+        return popularity;
+    }
+
+    public void setPopularity(Double popularity) {
+        this.popularity = popularity;
+    }
+
+    public String getPosterPath() {
+        return posterPath;
+    }
+
+    public void setPosterPath(String posterPath) {
+        this.posterPath = posterPath;
+    }
+
+    public String getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
     }
 
     public String getTitle() {
@@ -84,148 +125,28 @@ public class FilmItems {
         this.title = title;
     }
 
-    public String getPoster() {
-        return poster;
+    public Double getVoteAverage() {
+        return voteAverage;
     }
 
-    public void setPoster(String poster) {
-        this.poster = poster;
+    public void setVoteAverage(Double voteAverage) {
+        this.voteAverage = voteAverage;
     }
 
-    public String getYear() {
-        return year;
+    public Integer getVoteCount() {
+        return voteCount;
     }
 
-    public void setYear(String year) {
-        this.year = year;
+    public void setVoteCount(Integer voteCount) {
+        this.voteCount = voteCount;
     }
 
-    public String getRated() {
-        return rated;
+    public String getVideoLink() {
+        return videoLink;
     }
 
-    public void setRated(String rated) {
-        this.rated = rated;
-    }
-
-    public String getReleased() {
-        return released;
-    }
-
-    public void setReleased(String released) {
-        this.released = released;
-    }
-
-    public String getRuntime() {
-        return runtime;
-    }
-
-    public void setRuntime(String runtime) {
-        this.runtime = runtime;
-    }
-
-    public String getDirector() {
-        return director;
-    }
-
-    public void setDirector(String director) {
-        this.director = director;
-    }
-
-    public String getWriter() {
-        return writer;
-    }
-
-    public void setWriter(String writer) {
-        this.writer = writer;
-    }
-
-    public String getActors() {
-        return actors;
-    }
-
-    public void setActors(String actors) {
-        this.actors = actors;
-    }
-
-    public String getPlot() {
-        return plot;
-    }
-
-    public void setPlot(String plot) {
-        this.plot = plot;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getAwards() {
-        return awards;
-    }
-
-    public void setAwards(String awards) {
-        this.awards = awards;
-    }
-
-    public String getMetascore() {
-        return metascore;
-    }
-
-    public void setMetascore(String metascore) {
-        this.metascore = metascore;
-    }
-
-    public String getImdbRating() {
-        return imdbRating;
-    }
-
-    public void setImdbRating(String imdbRating) {
-        this.imdbRating = imdbRating;
-    }
-
-    public String getImdbVotes() {
-        return imdbVotes;
-    }
-
-    public void setImdbVotes(String imdbVotes) {
-        this.imdbVotes = imdbVotes;
-    }
-
-    public String getImdbId() {
-        return imdbId;
-    }
-
-    public void setImdbId(String imdbId) {
-        this.imdbId = imdbId;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public List<String> getGenres() {
-        return genres;
-    }
-
-    public void setGenres(List<String> genres) {
-        this.genres = genres;
-    }
-
-    public List<String> getImages() {
-        return images;
-    }
-
-    public void setImages(List<String> images) {
-        this.images = images;
+    public void setVideoLink(String videoLink) {
+        this.videoLink = videoLink;
     }
 
 }
