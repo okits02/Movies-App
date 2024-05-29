@@ -17,12 +17,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/editTextText2"
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/search"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_margin="8dp"
-                android:background="@drawable/edittext_backgroud"
+                android:background="@drawable/search_view_bg"
                 android:drawableStart="@drawable/search"
                 android:drawableEnd="@drawable/microphone"
                 android:ems="10"

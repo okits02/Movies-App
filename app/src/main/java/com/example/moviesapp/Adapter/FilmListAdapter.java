@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
@@ -37,12 +38,12 @@ public class FilmListAdapter extends RecyclerView.Adapter<FilmListAdapter.viewHo
 
     @Override
     public void onBindViewHolder(@NonNull FilmListAdapter.viewHolder holder, int position) {
-        holder.titletxt.setText(items.getData().get(position).getTitle());
+        holder.titletxt.setText(items.getItem().get(position).getTitle());
         RequestOptions requestOptions=new RequestOptions();
         requestOptions = requestOptions.transform(new CenterCrop(), new RoundedCorners(30));
 
         Glide.with(context)
-                .load(items.getData().get(position).getPoster())
+                .load(items.getItem().get(position).getPosterPath())
                 .apply(requestOptions)
                 .into(holder.pic);
 
@@ -50,7 +51,7 @@ public class FilmListAdapter extends RecyclerView.Adapter<FilmListAdapter.viewHo
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(holder.itemView.getContext(), DetailsActivity.class);
-                intent.putExtra("id", items.getData().get(position).getId());
+                intent.putExtra("id", items.getItem().get(position).getId());
                 context.startActivity(intent);
             }
         });
@@ -58,7 +59,7 @@ public class FilmListAdapter extends RecyclerView.Adapter<FilmListAdapter.viewHo
 
     @Override
     public int getItemCount() {
-        return items.getData().size();
+        return items.getItem().size();
     }
 
     public class viewHolder extends RecyclerView.ViewHolder {

@@ -6,8 +6,10 @@ import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -21,9 +23,12 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.example.moviesapp.Adapter.ActorListAdapter;
 import com.example.moviesapp.Adapter.CategoryEarchListAdapter;
+import com.example.moviesapp.Constrain.Constrains;
 import com.example.moviesapp.Domain.FilmItems;
 import com.example.moviesapp.R;
 import com.google.gson.Gson;
+
+import java.util.Collections;
 
 public class DetailsActivity extends AppCompatActivity {
     private RequestQueue mrequestQueue;
@@ -34,7 +39,8 @@ public class DetailsActivity extends AppCompatActivity {
     private ImageView pic2, backImg;
     private RecyclerView.Adapter adapterActorList, adapterCategory;
     private RecyclerView recyclerViewActors, recyclerViewCategory;
-
+    private Button playvideo;
+    private String videoURl;
     private NestedScrollView scrollView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,30 +55,29 @@ public class DetailsActivity extends AppCompatActivity {
         mrequestQueue= Volley.newRequestQueue(this);
         progressBar.setVisibility(View.VISIBLE);
         scrollView.setVisibility(View.GONE);
-        mstringRequest= new StringRequest(Request.Method.GET, "https://moviesapi.ir/api/v1/movies/" + idFilm, new Response.Listener<String>() {
+        mstringRequest= new StringRequest(Request.Method.GET, Constrains.ROOT_SEARCH + idFilm, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Gson gson = new Gson();
                 progressBar.setVisibility(View.GONE);
                 scrollView.setVisibility(View.VISIBLE);
-
                 FilmItems items= gson.fromJson(response, FilmItems.class);
+                videoURl=items.getVideoLink();
                 Glide.with(DetailsActivity.this)
-                        .load(items.getPoster())
+                        .load(items.getPosterPath())
                         .into(pic2);
                 titleTxt.setText(items.getTitle());
-                movieTimeTxt.setText(items.getRuntime());
-                movieRateTxt.setText(items.getImdbRating());
-                MovieSummaryInfo.setText(items.getPlot());
-                movieActorInfo.setText(items.getActors());
-                if(items.getImages()!=null)
+                movieTimeTxt.setText(String.valueOf(items.getRuntime()));
+                movieRateTxt.setText(String.valueOf(items.getVoteAverage()));
+                MovieSummaryInfo.setText(items.getOverview());
+                if(items.getProductionCompanies()!=null)
                 {
-                    adapterActorList=new ActorListAdapter(items.getImages());
+                    adapterActorList=new ActorListAdapter(Collections.singletonList(items.getProductionCompanies()));
                     recyclerViewActors.setAdapter(adapterActorList);
                 }
-                if(items.getGenres()!=null)
+                if(items.getGenreIds()!=null)
                 {
-                    adapterCategory= new CategoryEarchListAdapter(items.getGenres());
+                    adapterCategory= new CategoryEarchListAdapter(items.getGenreIds());
                     recyclerViewCategory.setAdapter(adapterCategory);
                 }
             }
@@ -86,6 +91,7 @@ public class DetailsActivity extends AppCompatActivity {
     }
     private void initView()
     {
+        playvideo=findViewById(R.id.PlayVideo);
         titleTxt=findViewById(R.id.MovieNametxt);
         progressBar=findViewById(R.id.progressBarDetail);
         scrollView=findViewById(R.id.scrollView4);
@@ -93,7 +99,6 @@ public class DetailsActivity extends AppCompatActivity {
         movieRateTxt=findViewById(R.id.movieStar);
         movieTimeTxt=findViewById(R.id.movieTime);
         MovieSummaryInfo=findViewById(R.id.movieSummary);
-        movieActorInfo=findViewById(R.id.movieActorInfo);
         backImg=findViewById(R.id.backimg);
         recyclerViewCategory=findViewById(R.id.genreView);
         recyclerViewActors=findViewById(R.id.imageRecycler);
@@ -104,6 +109,15 @@ public class DetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        playvideo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DetailsActivity.this, Watch_video_MainActivity.class);
+                intent.putExtra("videourl",videoURl);
+                startActivity(intent);
             }
         });
 

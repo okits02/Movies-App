@@ -1,20 +1,33 @@
+
 package com.example.moviesapp.Domain;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Datum {
+public class Item {
 
     @SerializedName("id")
     @Expose
     private Integer id;
+    @SerializedName("backdrop_path")
+    @Expose
+    private String backdropPath;
     @SerializedName("genre_ids")
     @Expose
-    private List<Integer> genreIds;
+    private List<String> genreIds;
+    @SerializedName("original_language")
+    @Expose
+    private String originalLanguage;
     @SerializedName("original_title")
     @Expose
     private String originalTitle;
+    @SerializedName("overview")
+    @Expose
+    private String overview;
+    @SerializedName("popularity")
+    @Expose
+    private Double popularity;
     @SerializedName("poster_path")
     @Expose
     private String posterPath;
@@ -30,6 +43,9 @@ public class Datum {
     @SerializedName("vote_count")
     @Expose
     private Integer voteCount;
+    @SerializedName("video_link")
+    @Expose
+    private Object videoLink;
 
     public Integer getId() {
         return id;
@@ -39,12 +55,28 @@ public class Datum {
         this.id = id;
     }
 
-    public List<Integer> getGenreIds() {
+    public String getBackdropPath() {
+        return backdropPath;
+    }
+
+    public void setBackdropPath(String backdropPath) {
+        this.backdropPath = backdropPath;
+    }
+
+    public List<String> getGenreIds() {
         return genreIds;
     }
 
-    public void setGenreIds(List<Integer> genreIds) {
+    public void setGenreIds(List<String> genreIds) {
         this.genreIds = genreIds;
+    }
+
+    public String getOriginalLanguage() {
+        return originalLanguage;
+    }
+
+    public void setOriginalLanguage(String originalLanguage) {
+        this.originalLanguage = originalLanguage;
     }
 
     public String getOriginalTitle() {
@@ -55,7 +87,21 @@ public class Datum {
         this.originalTitle = originalTitle;
     }
 
+    public String getOverview() {
+        return overview;
+    }
 
+    public void setOverview(String overview) {
+        this.overview = overview;
+    }
+
+    public Double getPopularity() {
+        return popularity;
+    }
+
+    public void setPopularity(Double popularity) {
+        this.popularity = popularity;
+    }
 
     public String getPosterPath() {
         return posterPath;
@@ -95,6 +141,14 @@ public class Datum {
 
     public void setVoteCount(Integer voteCount) {
         this.voteCount = voteCount;
+    }
+
+    public Object getVideoLink() {
+        return videoLink;
+    }
+
+    public void setVideoLink(Object videoLink) {
+        this.videoLink = videoLink;
     }
 
 }

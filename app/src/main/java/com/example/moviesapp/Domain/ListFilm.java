@@ -1,33 +1,21 @@
-
 package com.example.moviesapp.Domain;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class    ListFilm {
+public class ListFilm {
 
-    @SerializedName("data")
+    @SerializedName("item")
     @Expose
-    private List<Datum> data;
-    @SerializedName("metadata")
-    @Expose
-    private Metadata metadata;
+    private List<Item> item;
 
-    public List<Datum> getData() {
-        return data;
+    public List<Item> getItem() {
+        return item;
     }
 
-    public void setData(List<Datum> data) {
-        this.data = data;
-    }
-
-    public Metadata getMetadata() {
-        return metadata;
-    }
-
-    public void setMetadata(Metadata metadata) {
-        this.metadata = metadata;
+    public void setItem(List<Item> item) {
+        this.item = item;
     }
 
 }

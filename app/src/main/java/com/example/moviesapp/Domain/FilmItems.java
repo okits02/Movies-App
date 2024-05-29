@@ -3,6 +3,7 @@ package com.example.moviesapp.Domain;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
 public class FilmItems {
 
     @SerializedName("id")
@@ -13,7 +14,7 @@ public class FilmItems {
     private String backdropPath;
     @SerializedName("genre_ids")
     @Expose
-    private List<Integer> genreIds;
+    private List<String> genreIds;
     @SerializedName("original_language")
     @Expose
     private String originalLanguage;
@@ -32,6 +33,12 @@ public class FilmItems {
     @SerializedName("release_date")
     @Expose
     private String releaseDate;
+    @SerializedName("runtime")
+    @Expose
+    private Integer runtime;
+    @SerializedName("production_companies")
+    @Expose
+    private String productionCompanies;
     @SerializedName("title")
     @Expose
     private String title;
@@ -61,11 +68,11 @@ public class FilmItems {
         this.backdropPath = backdropPath;
     }
 
-    public List<Integer> getGenreIds() {
+    public List<String> getGenreIds() {
         return genreIds;
     }
 
-    public void setGenreIds(List<Integer> genreIds) {
+    public void setGenreIds(List<String> genreIds) {
         this.genreIds = genreIds;
     }
 
@@ -115,6 +122,22 @@ public class FilmItems {
 
     public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
+    }
+
+    public Integer getRuntime() {
+        return runtime;
+    }
+
+    public void setRuntime(Integer runtime) {
+        this.runtime = runtime;
+    }
+
+    public String getProductionCompanies() {
+        return productionCompanies;
+    }
+
+    public void setProductionCompanies(String productionCompanies) {
+        this.productionCompanies = productionCompanies;
     }
 
     public String getTitle() {

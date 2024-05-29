@@ -2,19 +2,19 @@ package com.example.moviesapp.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
+import com.example.moviesapp.Constrain.Constrains;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
@@ -22,13 +22,11 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.moviesapp.Adapter.CategoryListAdapter;
 import com.example.moviesapp.Adapter.FilmListAdapter;
 import com.example.moviesapp.Adapter.SliderAdapter;
-import com.example.moviesapp.Domain.Genre;
 import com.example.moviesapp.Domain.GenreItem;
 import com.example.moviesapp.Domain.ListFilm;
 import com.example.moviesapp.Domain.SliderItem;
@@ -46,6 +44,8 @@ public class MainActivity2 extends AppCompatActivity {
     private StringRequest mstringRequest, mstringRequest1, mstringRequest2;
     private ProgressBar loading, loading1, loading2;
     private ViewPager2 viewPager2;
+
+    private SearchView searchView;
     private ImageView imgExplorer, imgFavorite, imgCart, imgProfile;
     private Handler sliderHandler=new Handler();
     @Override
@@ -64,7 +64,7 @@ public class MainActivity2 extends AppCompatActivity {
     {
         mrequestQueue=Volley.newRequestQueue(this);
         loading.setVisibility(View.VISIBLE);
-        mstringRequest=new StringRequest(Request.Method.GET, "https://moviesapi.ir/api/v1/movies?page=1", new Response.Listener<String>() {
+        mstringRequest=new StringRequest(Request.Method.GET, Constrains.ROOT_POPULAR, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Gson gson=new Gson();
@@ -86,7 +86,7 @@ public class MainActivity2 extends AppCompatActivity {
     private void sendRequestCategoryMovies(){
         mrequestQueue=Volley.newRequestQueue(this);
         loading1.setVisibility(View.VISIBLE);
-        mstringRequest1=new StringRequest(Request.Method.GET, "https://moviesapi.ir/api/v1/genres", new Response.Listener<String>() {
+        mstringRequest1=new StringRequest(Request.Method.GET, Constrains.ROOT_GENER, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Gson gson=new Gson();
@@ -109,12 +109,12 @@ public class MainActivity2 extends AppCompatActivity {
     private void sendRequestUpcommingMovies(){
         mrequestQueue=Volley.newRequestQueue(this);
         loading2.setVisibility(View.GONE);
-        mstringRequest2=new StringRequest(Request.Method.GET, "https://moviesapi.ir/api/v1/movies?page=3", new Response.Listener<String>() {
+        mstringRequest2=new StringRequest(Request.Method.GET, Constrains.ROOT_Up_Coming, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Gson gson=new Gson();
                 loading2.setVisibility(View.GONE);
-                ListFilm items=gson.fromJson(response,ListFilm.class);
+                ListFilm items=gson.fromJson(response, ListFilm.class);
                 adapterUpcomming=new FilmListAdapter(items);
                 recyclerViewUpcomming.setAdapter(adapterUpcomming);
             }
@@ -208,5 +208,13 @@ public class MainActivity2 extends AppCompatActivity {
         imgFavorite=findViewById(R.id.imageViewFavorite);
         imgCart=findViewById(R.id.imageViewCart);
         imgProfile=findViewById(R.id.imageViewProfile);
+        searchView=findViewById(R.id.search);
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity2.this, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
